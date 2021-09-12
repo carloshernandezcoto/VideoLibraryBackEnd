@@ -1,6 +1,14 @@
 const genres = require("./routes/genres");
 const home = require("./routes/home");
 const express = require("express");
+const mongoose = require("mongoose");
+
+mongoose
+  .connect("mongodb://localhost/vidlyBackend")
+  .then(() => console.log("Connected to the vidlyBackend Mongo DB..."))
+  .catch((err) =>
+    console.error("Could not connect to vidlyBackend Mongo DB...", err)
+  );
 
 //Express setup
 const app = express();

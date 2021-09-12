@@ -3,21 +3,31 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 
-const genreSchema = new mongoose.Schema({
+const customerSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
     minlength: 5,
     maxlength: 50,
   },
+  isGold: {
+    type: Boolean,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+    minlength: 5,
+    maxlength: 12,
+  },
 });
 
-const Genre = mongoose.model("Genre", genreSchema);
+const Customer = mongoose.model("Customer", customerSchema);
 
 router.get("/", async (req, res) => {
   try {
-    const genres = await Genre.find().sort({ name: 1 });
-    res.send(genres);
+    const customers = await Customer.find().sort({ name: 1 });
+    res.send(customers);
   } catch (err) {
     console.log(err);
   }
